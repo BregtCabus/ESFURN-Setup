@@ -1,0 +1,29 @@
+version: '3.5'
+
+services:
+  etl:
+    image: edence/esfurn_etl:image_tag
+    volumes:
+      - "./log:/log"
+      - "data_folder:/data"
+    networks:
+      - esfurn_esfurn-net
+    environment:
+      DB_DBMS: "postgresql"
+      DB_SERVER: "postgres"
+      DB_PORT: "5432"
+      DB_DBNAME: "OHDSI"
+      DB_SCHEMA: "omopcdm"
+      DB_USER: "db_username"
+      DB_PASSWORD: "db_password"
+      INPUT_DATA: "input_data"
+      DIAGNOSIS_CODE_MAPPING: "diagnosis_code_mapping"
+      DRUG_CODE_MAPPING: "drug_code_mapping"
+      SITE_COLLECTION_MAPPING: "site_collection_mapping"
+      VERBOSITY_LEVEL: "verbosity_level"
+      INSIDE_DOCKER: "True"
+
+networks:
+  esfurn_esfurn-net:
+    external:
+      name: esfurn-net
