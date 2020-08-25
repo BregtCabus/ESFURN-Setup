@@ -36,7 +36,3 @@ sed -i -e "s/image_tag/$image_tag/g" docker-compose.yml
 docker login
 docker-compose pull
 docker-compose run --rm --name etl etl
-
-
-
-
